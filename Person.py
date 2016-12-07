@@ -78,6 +78,7 @@ with open("b.pickle","rb") as readFile:
     a_list=pickle.load(readFile)
 print a_list
 """
+""" files
 def sanitize(tempStr):
     if "-" in tempStr:
         splitter="-"
@@ -92,13 +93,21 @@ jamesData=[]
 julieData=[]
 mikeyData=[]
 sarahData=[]
+unique_jamesData=[]
 try:
     with open("james.txt","r") as jamesFile,open("julie.txt","r") as julieFile,open("mikey.txt","r") as mikeyFile,open("sarah.txt","r") as sarahFile:
         jamesDataTemp=jamesFile.readline().strip().split(",")
         julieDataTemp=julieFile.readline().strip().split(",")
         mikeyDataTemp=mikeyFile.readline().strip().split(",")
         sarahDataTemp=sarahFile.readline().strip().split(",")
-        jamesData=sorted([sanitize(items) for items in jamesDataTemp])
-        print jamesData
+        for item in jamesDataTemp:
+            sanitizedTime=sanitize(item)
+            if not unique_jamesData.__contains__(sanitizedTime):
+                unique_jamesData.append(sanitizedTime)
+        #jamesData=sorted([sanitize(items) for items in jamesDataTemp])
+        print sorted(unique_jamesData)[0:3]
 except:
-    print "error"        
+    print "error"
+"""
+distances={"sawe",1.1,"sadwe",1.1}
+print distances         
