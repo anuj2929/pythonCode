@@ -70,9 +70,35 @@ data=open("out.txt","a")
 print >>data, other
 data.close()
 """
+"""
 import pickle
 with open("b.pickle","wb") as writeFile:
     pickle.dump(["this is the line","ok this is another"], writeFile)
 with open("b.pickle","rb") as readFile:
     a_list=pickle.load(readFile)
 print a_list
+"""
+def sanitize(tempStr):
+    if "-" in tempStr:
+        splitter="-"
+    elif ":" in tempStr:
+        splitter=":"
+    else:
+        return tempStr
+    (mins,secs)=tempStr.split(splitter)
+    return mins+"."+secs
+    
+jamesData=[]
+julieData=[]
+mikeyData=[]
+sarahData=[]
+try:
+    with open("james.txt","r") as jamesFile,open("julie.txt","r") as julieFile,open("mikey.txt","r") as mikeyFile,open("sarah.txt","r") as sarahFile:
+        jamesDataTemp=jamesFile.readline().strip().split(",")
+        julieDataTemp=julieFile.readline().strip().split(",")
+        mikeyDataTemp=mikeyFile.readline().strip().split(",")
+        sarahDataTemp=sarahFile.readline().strip().split(",")
+        jamesData=sorted([sanitize(items) for items in jamesDataTemp])
+        print jamesData
+except:
+    print "error"        
