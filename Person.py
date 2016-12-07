@@ -78,7 +78,7 @@ with open("b.pickle","rb") as readFile:
     a_list=pickle.load(readFile)
 print a_list
 """
-""" files
+# sanitize data method
 def sanitize(tempStr):
     if "-" in tempStr:
         splitter="-"
@@ -88,7 +88,14 @@ def sanitize(tempStr):
         return tempStr
     (mins,secs)=tempStr.split(splitter)
     return mins+"."+secs
-    
+
+def uniqueList(tempList):
+    uniqueList=[]
+    for item in tempList:
+        if item not in uniqueList:
+            uniqueList.append(item)
+    return uniqueList
+"""    
 jamesData=[]
 julieData=[]
 mikeyData=[]
@@ -109,5 +116,23 @@ try:
 except:
     print "error"
 """
+""" #set
 distances={"sawe",1.1,"sadwe",1.1}
 print distances         
+"""
+
+def getCoachData(fileName):
+    try:
+        with open(fileName,"rb") as fileData:
+            line=fileData.readline().strip().split(",")
+            (name,dob)=line.pop(0),line.pop(0)
+            return {"Name":name,"DOB":dob,"Times":str(sorted(set([sanitize(item) for item in line]))[0:3])}
+    except IOError as err:
+        print "file error= "+str(err)
+        return None;
+    except:
+        print "some error"
+        return None;
+
+sarahData=getCoachData("sarah.txt")
+print sarahData["name"]
