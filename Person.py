@@ -78,6 +78,18 @@ with open("b.pickle","rb") as readFile:
     a_list=pickle.load(readFile)
 print a_list
 """
+class Athlete(list):
+    def __init__(self,name,dob=None,times=[]):
+        list.__init__([])
+        self.name=name
+        self.dob=dob
+        self.extend(times)
+    def top3(self):
+        return sorted([sanitize(items) for items in self.times])[0:3]
+
+
+
+
 # sanitize data method
 def sanitize(tempStr):
     if "-" in tempStr:
@@ -126,7 +138,8 @@ def getCoachData(fileName):
         with open(fileName,"rb") as fileData:
             line=fileData.readline().strip().split(",")
             (name,dob)=line.pop(0),line.pop(0)
-            return {"Name":name,"DOB":dob,"Times":str(sorted(set([sanitize(item) for item in line]))[0:3])}
+            #return {"Name":name,"DOB":dob,"Times":str(sorted(set([sanitize(item) for item in line]))[0:3])}
+            return Athlete(name,dob,line)
     except IOError as err:
         print "file error= "+str(err)
         return None;
@@ -134,5 +147,20 @@ def getCoachData(fileName):
         print "some error"
         return None;
 
-sarahData=getCoachData("sarah.txt")
-print sarahData["name"]
+#sarahData=getCoachData("sarah.txt")
+"""sarahObj=Athlete(sarahData["Name"],sarahData["DOB"],sarahData["Times"])
+print sarahObj.name"""
+#print sarahData.top3()
+
+class namedList(list):
+    def __init__(self,a_name):
+        list.__init__([])
+        self.name=a_name
+"""
+obj=namedList("Hello this is anuj")
+obj.extend(["askkodawe","asdawe"])
+obj.append("dftredrt")
+print obj.name
+for item in obj:
+    print item
+"""
