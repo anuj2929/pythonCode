@@ -83,7 +83,7 @@ class Athlete(list):
         list.__init__([])
         self.name=name
         self.dob=dob
-        self.extend(times)
+        self.times=times
     def top3(self):
         return sorted([sanitize(items) for items in self.times])[0:3]
 

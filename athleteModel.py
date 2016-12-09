@@ -46,4 +46,4 @@ list_files=["james.txt","julie.txt","mikey.txt","sarah.txt"]
 a=putToStore(list_files)
 data=getFromStore()
 for each_athlete in data:
-    print "Name="+data[each_athlete].name+" has dob= "+data[each_athlete].dob
+    print "Name="+data[each_athlete].name+" has dob= "+data[each_athlete].dob+" best times= "+str(data[each_athlete].top3())
