@@ -141,10 +141,10 @@ def getCoachData(fileName):
             #return {"Name":name,"DOB":dob,"Times":str(sorted(set([sanitize(item) for item in line]))[0:3])}
             return Athlete(name,dob,line)
     except IOError as err:
-        print "file error= "+str(err)
+        print("file error= "+str(err))
         return None;
     except:
-        print "some error"
+        print("some error")
         return None;
 
 #sarahData=getCoachData("sarah.txt")

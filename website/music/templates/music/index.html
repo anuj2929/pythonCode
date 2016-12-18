@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+this is changed
+<ul>
+	{% for album in albums %}
+	<li>
+		<a href="{{album.id}}">{{album.album_title}}</a>
+	</li>
+	{% endfor %}
+</ul>
+</body>
+</html>
